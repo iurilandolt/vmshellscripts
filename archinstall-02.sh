@@ -40,11 +40,11 @@ systemctl enable NetworkManager
 #mkdir -p /etc/pulse/default.pa.d
 #echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
 
-#echo "Enter Username: "
-#read username
-#useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/zsh $username
-#echo "passwd for $username: "
-#passwd $username
+echo "Username: "
+read username
+useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/zsh $username
+echo "passwd for $username: "
+passwd $username
 
 echo "Pre-Installation Finish Reboot now"
 echo "exit"
