@@ -23,27 +23,29 @@ passwd
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S --noconfirm dhcpcd connman zsh \
-	xorg-server xorg-xinit xorg-xrandr xorg-xfontsel \
-	xorg-xlsfonts xorg-xkill xorg-xinput xorg-xwininfo \
-	linux-headers dkms jshon expac git wget acpid avahi \
-	net-tools xdg-user-dirs vulkan-icd-loader lib32-vulkan-icd-loader \
-	mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver \
-	mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver \
-	vulkan-radeon lib32-vulkan-radeon xz \
-	alsa-utils pulseaudio-alsa pulseaudio-equalizer
+#pacman -S --noconfirm dhcpcd connman zsh \
+#	xorg-server xorg-xinit xorg-xrandr xorg-xfontsel \
+#	xorg-xlsfonts xorg-xkill xorg-xinput xorg-xwininfo \
+#	linux-headers dkms jshon expac git wget acpid avahi \
+#	net-tools xdg-user-dirs vulkan-icd-loader lib32-vulkan-icd-loader \
+#	mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver \
+#	mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver \
+#	vulkan-radeon lib32-vulkan-radeon xz \
+#	alsa-utils pulseaudio-alsa pulseaudio-equalizer
 
-systemctl enable connman.service acpid avahi-daemon systemd-timesyncd
+#systemctl enable connman.service acpid avahi-daemon systemd-timesyncd
 
-mkdir -p /etc/pulse/default.pa.d
-echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
+#mkdir -p /etc/pulse/default.pa.d
+#echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
 
-echo "Enter Username: "
-read username
-useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/zsh $username
-echo "passwd for $username: "
-passwd $username
-sed -i "s/^#%wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) ALL" /etc/sudoers
+#echo "Enter Username: "
+#read username
+#useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/zsh $username
+#echo "passwd for $username: "
+#passwd $username
+
+sed -i "s/^#% wheel ALL=(ALL) ALL$/% wheel ALL=(ALL) ALL" /etc/sudoers
+sed -i "s/^#% sudo ALL=(ALL) ALL$/% sudo ALL=(ALL) ALL" /etc/sudoers
 
 
 echo "Pre-Installation Finish Reboot now ut first"
