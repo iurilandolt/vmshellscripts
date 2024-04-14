@@ -27,7 +27,7 @@ pacman -Syy
 
 pacstrap /mnt base base-devel linux linux-firmware \
 	sysfsutils usbutils e2fsprogs inetutils netctl \
-	nano less which git sed man-db man-pages
+	nano less which git sed man-db man-pages amd-ucode
 
 genfstab -U /mnt >> /mnt/etc/fstab
 

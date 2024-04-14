@@ -1,4 +1,7 @@
 #part2
+pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
 
 sed -i "s/^#Color$/Color/" /etc/pacman.conf
 sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
@@ -11,8 +14,8 @@ echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 echo "%sudo ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 #reflector -c ES -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
-pacman --noconfirm -Sy archlinux-keyring
-pacman -Sy
+#pacman --noconfirm -Sy archlinux-keyring
+pacman -Syu
 
 loadkeys br-latin1-abnt2
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
@@ -29,11 +32,7 @@ echo $hostname > /etc/hostname
 echo "127.0.0.1       localhost" >> /etc/hosts
 echo "::1             localhost" >> /etc/hosts
 echo "127.0.1.1       $hostname.localdomain $hostname" >> /etc/hosts
-mkinitcpio -P
-
-pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
-grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
-grub-mkconfig -o /boot/grub/grub.cfg
+#mkinitcpio -P
 
 pacman -S --noconfirm networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc \
 	linux-headers dkms jshon expac wget acpid avahi net-tools xdg-user-dirs zsh zsh-completions
