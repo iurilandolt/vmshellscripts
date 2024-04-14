@@ -1,7 +1,7 @@
 #part2
 pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
-grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /mnt/boot/grub/grub.cfg
 
 sed -i "s/^#Color$/Color/" /etc/pacman.conf
 sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
