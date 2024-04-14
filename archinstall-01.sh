@@ -19,6 +19,7 @@ mkfs.ext4 -L HOME /dev/sda4
 mkdir -p /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
 mount /dev/sda3 /mnt
+mkdir /mnt/home
 mount /dev/sda4 /mnt/home
 
 reflector -c ES -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
