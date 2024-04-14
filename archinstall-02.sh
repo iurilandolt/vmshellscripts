@@ -3,22 +3,24 @@
 sed -i "s/^#Color$/Color/" /etc/pacman.conf
 sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
-sed -i "s/^#[multilib]$/[multilib]/" /etc/pacman.conf
-sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/mirrorlist/" /etc/pacman.conf
+echo "[multilib]" >> /etc/pacman.conf
+echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+#sed -i "s/^#[multilib]$/[multilib]/" /etc/pacman.conf
+#sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/mirrorlist/" /etc/pacman.conf
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 echo "%sudo ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
-reflector -c ES -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
+#reflector -c ES -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman --noconfirm -Sy archlinux-keyring
 pacman -Sy
 
 loadkeys br-latin1-abnt2
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
-echo "en_US.UTF-8" >> /etc/locale.gen
+echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-export	LANG=en_US.UTF-8
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
+export	LANG=en_GB.UTF-8
 echo "KEYMAP=br-latin1-abnt2" > /etc/vconsole.conf
 export	KEYMAP=br-latin1-abnt2
 echo "Hostname: "
