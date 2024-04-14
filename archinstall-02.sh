@@ -7,8 +7,9 @@ sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
 sed -i "s/^#[[]multilib[]]$/[multilib]/" /etc/pacman.conf
 sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/mirrorlist/" /etc/pacman.conf
-sed -i "s/^# %wheel ALL=ALL(ALL:ALL) ALL$/%wheel ALL=ALL(ALL:ALL) ALL/" /etc/sudoers
-sed -i "s/^# %sudo ALL=ALL(ALL:ALL) ALL$/# %sudo ALL=ALL(ALL:ALL) ALL/" /etc/sudoers
+echo "%wheel ALL=ALL(ALL:ALL) ALL" >> /etc/sudoers
+echo "%sudo ALL=ALL(ALL:ALL) ALL" >> /etc/sudoers
+
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
