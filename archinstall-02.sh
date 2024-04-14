@@ -26,6 +26,7 @@ mkinitcpio -P
 echo "passwd for root: "
 passwd
 
+pacman -S grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
