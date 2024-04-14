@@ -19,7 +19,7 @@ git clone https://git.suckless.org/st /tmp/st
 
 sudo make -C  /tmp/dwm clean install
 sudo make -C  /tmp/st clean install
-# sed -i "s/^target$/value/" /tmp/st/lib.h ?
+sed -i "s/^static char *shell = '"/bin/sh"'$/static char *shell = '"/bin/sh"'/" /tmp/st/config.h
 #echo "exec dwn" >> ~/.xinitrc
 #sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
