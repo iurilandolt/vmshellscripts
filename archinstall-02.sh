@@ -1,9 +1,7 @@
 #part2
-reflector -c 'Berlin' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
-pacman -Syy
 
 loadkeys br-latin1-abnt2
-
+pacman -Syy
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
