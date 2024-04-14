@@ -1,7 +1,6 @@
 #part2
 loadkeys br-latin1-abnt2
 
-reflector -c 'Spain' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
 
 pacman -S --noconfirm sed
@@ -29,7 +28,7 @@ mkinitcpio -P
 echo "passwd for root: "
 passwd
 
-pacman -S grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
+pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -54,8 +53,8 @@ pacman -S --noconfirm zsh nano less which man-db man-pages
 #echo "passwd for $username: "
 #passwd $username
 
-sed -i 's/^# %wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) ALL/' /etc/sudoers
-sed -i 's/^# %sudo ALL=(ALL) ALL$/%sudo ALL=(ALL) ALL/' /etc/sudoers
+sed -i 's/^# %wheel ALL=ALL(ALL:ALL)$/%wheel ALL=ALL(ALL:ALL/' /etc/sudoers
+sed -i 's/^# %sudo ALL=ALL(ALL:ALL)$/# %sudo ALL=ALL(ALL:ALL)/' /etc/sudoers
 
 echo "Pre-Installation Finish Reboot now ut first"
 
