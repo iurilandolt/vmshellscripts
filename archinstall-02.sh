@@ -45,8 +45,8 @@ systemctl enable NetworkManager
 #echo "passwd for $username: "
 #passwd $username
 
-sed -i 's/^# %wheel ALL=ALL(ALL:ALL)$/%wheel ALL=ALL(ALL:ALL/' /etc/sudoers
-sed -i 's/^# %sudo ALL=ALL(ALL:ALL)$/# %sudo ALL=ALL(ALL:ALL)/' /etc/sudoers
+sed -i "s/^# %wheel ALL=ALL(ALL:ALL) ALL$/%wheel ALL=ALL(ALL:ALL) ALL/" /etc/sudoers
+sed -i "s/^# %sudo ALL=ALL(ALL:ALL) ALL$/# %sudo ALL=ALL(ALL:ALL) ALL/" /etc/sudoers
 
 echo "Pre-Installation Finish Reboot now ut first"
 
