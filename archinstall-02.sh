@@ -1,6 +1,6 @@
 #part2
 pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
-grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot --recheck
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/mnt/boot/efi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
 sed -i "s/^#Color$/Color/" /etc/pacman.conf
@@ -36,7 +36,7 @@ echo "127.0.1.1       $hostname.localdomain $hostname" >> /etc/hosts
 
 pacman -S --noconfirm networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc \
 	linux-headers dkms jshon expac wget acpid avahi net-tools xdg-user-dirs zsh zsh-completions
-systemctl enable NetworkManager enable acpid avahi-daemon systemd-timesyncd
+systemctl enable NetworkManager acpid avahi-daemon systemd-timesyncd
 
 
 #pacman -S alsa-utils pulseaudio-alsa pulseaudio-equalizer
