@@ -14,8 +14,8 @@
 
 #pacman -S --noconfirm vim
 
-git clone https://git.suckless.org/dwm /tmp
-git clone https://git.suckless.org/st /tmp
+git clone https://git.suckless.org/dwm /tmp/dwm
+git clone https://git.suckless.org/st /tmp/st
 
 sudo make -C  /tmp/dwm clean install
 sudo make -C  /tmp/st clean install
