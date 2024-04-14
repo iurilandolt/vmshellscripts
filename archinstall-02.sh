@@ -1,15 +1,14 @@
 #part2
 loadkeys br-latin1-abnt2
-pacman -S --noconfirm refclector
-reflector -c 'Spain' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
-
 pacman -S --noconfirm sed
 sed -i "s/^#Color$/Color/" /etc/pacman.conf
 sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
 sed -i "s/^#[[]multilib[]]$/[multilib]/" /etc/pacman.conf
 sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/mirrorlist/" /etc/pacman.conf
+sed -i "s/^# %wheel ALL=ALL(ALL:ALL) ALL$/%wheel ALL=ALL(ALL:ALL) ALL/" /etc/sudoers
+sed -i "s/^# %sudo ALL=ALL(ALL:ALL) ALL$/# %sudo ALL=ALL(ALL:ALL) ALL/" /etc/sudoers
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
@@ -45,8 +44,7 @@ systemctl enable NetworkManager
 #echo "passwd for $username: "
 #passwd $username
 
-sed -i "s/^# %wheel ALL=ALL(ALL:ALL) ALL$/%wheel ALL=ALL(ALL:ALL) ALL/" /etc/sudoers
-sed -i "s/^# %sudo ALL=ALL(ALL:ALL) ALL$/# %sudo ALL=ALL(ALL:ALL) ALL/" /etc/sudoers
+
 
 echo "Pre-Installation Finish Reboot now ut first"
 
