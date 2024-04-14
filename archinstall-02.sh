@@ -1,6 +1,9 @@
 #part2
 pacman -S --noconfirm sed
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
+sed -i "s/^#[multilib]$/[multilib]" /etc/pacman.conf
+sed -i "s/^#Include = /etc/pacman.d/mirrorlist$/Include = /etc/pacman.d/mirrorlist" /etc/pacman.conf
+
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
@@ -40,8 +43,10 @@ read username
 useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/zsh $username
 echo "passwd for $username: "
 passwd $username
+sed -i "s/^#%wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) ALL" /etc/sudoers
+
+
 echo "Pre-Installation Finish Reboot now ut first"
 
-echo " ->>> dont forget to uncomment multilib"
-echo " ->>> nano /etc/pacman.conf"
-echo " ->>> uncomment %wheel ALL=(ALL) ALL"
+
+
