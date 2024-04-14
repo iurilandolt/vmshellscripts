@@ -16,7 +16,7 @@ mkfs.ext4 -L ROOT /dev/sda3
 mkdir /mnt/home
 mkfs.ext4 -L HOME /dev/sda4
 
-mkdir -p /mnt/boot/efi
+mkdir -p /mnt/efi
 mount /dev/sda1 /mnt/boot/efi
 mount /dev/sda3 /mnt
 mkdir /mnt/home
