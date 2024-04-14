@@ -1,6 +1,6 @@
 #part2
 loadkeys br-latin1-abnt2
-pacman --noconfirm refclector
+pacman -S --noconfirm refclector
 reflector -c 'Spain' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
 
