@@ -23,7 +23,10 @@ mount /dev/sda4 /mnt/home
 
 reflector -c 'Spain' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
-pacstrap /mnt base base-devel linux linux-firmware amd-ucode
+pacstrap /mnt base base-devel linux linux-firmware \
+	sysfsutils usbutils e2fsprogs inetutils netctl \
+	nano less which man-db man-pages
+
 genfstab -U /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt

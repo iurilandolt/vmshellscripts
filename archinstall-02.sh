@@ -1,6 +1,7 @@
 #part2
 loadkeys br-latin1-abnt2
-
+pacman --noconfirm refclector
+reflector -c 'Spain' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
 
 pacman -S --noconfirm sed
@@ -32,17 +33,8 @@ pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatre
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S --noconfirm zsh nano less which man-db man-pages
-#	xorg-server xorg-xinit xorg-xrandr xorg-xfontsel \
-#	xorg-xlsfonts xorg-xkill xorg-xinput xorg-xwininfo \
-#	linux-headers dkms jshon expac git wget acpid avahi \
-#	net-tools xdg-user-dirs vulkan-icd-loader lib32-vulkan-icd-loader \
-#	mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver \
-#	mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver \
-#	vulkan-radeon lib32-vulkan-radeon xz \
-#	alsa-utils pulseaudio-alsa pulseaudio-equalizer
-
-#systemctl enable connman.service acpid avahi-daemon systemd-timesyncd
+pacman -S --noconfirm networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc
+systemctl enable NetworkManager
 
 #mkdir -p /etc/pulse/default.pa.d
 #echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
