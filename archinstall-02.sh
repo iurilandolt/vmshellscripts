@@ -1,12 +1,15 @@
 #part2
 loadkeys br-latin1-abnt2
+
 pacman -S --noconfirm sed
 sed -i "s/^#Color$/Color/" /etc/pacman.conf
 sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
 sed -i "s/^#[[]multilib[]]$/[multilib]/" /etc/pacman.conf
 sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/mirrorlist/" /etc/pacman.conf
-pacman -Sy
+
+reflector -c 'Spain' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
+pacman -Syy
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
@@ -30,7 +33,7 @@ pacman -S grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S --noconfirm zsh nano
+pacman -S --noconfirm zsh nano less which man-db man-pages
 #	xorg-server xorg-xinit xorg-xrandr xorg-xfontsel \
 #	xorg-xlsfonts xorg-xkill xorg-xinput xorg-xwininfo \
 #	linux-headers dkms jshon expac git wget acpid avahi \
@@ -51,10 +54,8 @@ pacman -S --noconfirm zsh nano
 #echo "passwd for $username: "
 #passwd $username
 
-sed -i "s/^#% wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) ALL/" /etc/sudoers
-sed -i "s/^#% sudo ALL=(ALL) ALL$/%sudo ALL=(ALL) ALL/" /etc/sudoers
-
-
+sed -i 's/^#% wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) ALL/' /etc/sudoers
+sed -i 's/^#% sudo ALL=(ALL) ALL$/%sudo ALL=(ALL) ALL/' /etc/sudoers
 
 echo "Pre-Installation Finish Reboot now ut first"
 
