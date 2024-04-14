@@ -23,9 +23,9 @@ hwclock --systohc
 echo "en_GB.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 echo "LANG=en_GB.UTF-8" > /etc/locale.conf
-export	LANG=en_GB.UTF-8
 echo "KEYMAP=br-latin1-abnt2" > /etc/vconsole.conf
-export	KEYMAP=br-latin1-abnt2
+#export LANG=en_GB.UTF-8
+#export KEYMAP=br-latin1-abnt2
 echo "Hostname: "
 read hostname
 echo $hostname > /etc/hostname
