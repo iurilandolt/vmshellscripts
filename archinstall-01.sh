@@ -7,9 +7,13 @@ pacman --noconfirm -Sy archlinux-keyring
 timedatectl set-ntp true
 
 mkfs.fat -F32 -n EFI /dev/sda1
+
 mkswap -L SWAP /dev/sda2
 swapon /dev/sda2
+
 mkfs.ext4 -L ROOT /dev/sda3
+
+mkdir /mnt/home
 mkfs.ext4 -L HOME /dev/sda4
 
 mkdir -p /mnt/boot/efi
