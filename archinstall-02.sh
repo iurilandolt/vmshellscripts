@@ -32,6 +32,12 @@ systemctl enable NetworkManager acpid avahi-daemon systemd-timesyncd
 #mkdir -p /etc/pulse/default.pa.d
 #echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
 
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
+pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/mnt/boot/efi --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+
 echo "passwd for root: "
 passwd
 echo "Username: "
@@ -40,10 +46,6 @@ useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/bash $userna
 echo "passwd for $username: "
 passwd $username
 chsh -s /usr/bin/zsh $username
-
-pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
-grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
-grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "Pre-Installation Finish Reboot now"
 echo "exit"
