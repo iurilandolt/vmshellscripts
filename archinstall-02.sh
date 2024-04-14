@@ -8,6 +8,7 @@ sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 echo "%sudo ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
+reflector -c ES -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman --noconfirm -Sy archlinux-keyring
 pacman -Sy
 
