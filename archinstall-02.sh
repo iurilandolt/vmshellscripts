@@ -1,6 +1,6 @@
 #part2
 pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatresize
-grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/efi --recheck
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
 sed -i "s/^#Color$/Color/" /etc/pacman.conf
