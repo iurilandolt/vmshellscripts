@@ -35,8 +35,9 @@ pacman -S --noconfirm grub os-prober efibootmgr dosfstools mtools gptfdisk fatre
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --efi-directory=/boot/efi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S --noconfirm networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc
-systemctl enable NetworkManager
+pacman -S --noconfirm networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc \
+	linux-headers dkms jshon expac wget acpid avahi net-tools xdg-user-dirs
+systemctl enable NetworkManager enable acpid avahi-daemon systemd-timesyncd
 
 #pacman -S alsa-utils pulseaudio-alsa pulseaudio-equalizer
 #mkdir -p /etc/pulse/default.pa.d
@@ -46,7 +47,7 @@ echo "passwd for root: "
 passwd
 echo "Username: "
 read username
-useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/zsh $username
+useradd -m -G audio,video,input,wheel,sys,log,rfkill,lp,adm -s /bin/bash $username
 echo "passwd for $username: "
 passwd $username
 
