@@ -12,14 +12,14 @@ pacman -S --noconfirm xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xback
 	xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xinput xorg-xwininfo libx11 libxinerama libxft \
 	webkit2gtk
 
-pacman -S --noconfirm vim
+#pacman -S --noconfirm vim
 
-git clone https://git.suckless.org/dwm ~/Documents clean install
-git clone https://git.suckless.org/st ~/Documents clean install
+#git clone https://git.suckless.org/dwm ~/Documents clean install
+#git clone https://git.suckless.org/st ~/Documents clean install
 
-sudo make -C  ~/Documents/dwm
-sudo make -C  ~/Documents/st
+#sudo make -C  ~/Documents/dwm
+#sudo make -C  ~/Documents/st
 
-echo "exec dwn" >> ~/.xinitrc
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#echo "exec dwn" >> ~/.xinitrc
+#sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
