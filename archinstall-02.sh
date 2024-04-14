@@ -22,15 +22,10 @@ echo $hostname > /etc/hostname
 echo "127.0.0.1       localhost" >> /etc/hosts
 echo "::1             localhost" >> /etc/hosts
 echo "127.0.1.1       $hostname.localdomain $hostname" >> /etc/hosts
-#mkinitcpio -P
 
 pacman -S --noconfirm networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc \
 	linux-headers dkms jshon expac wget acpid avahi net-tools xdg-user-dirs zsh zsh-completions
 systemctl enable NetworkManager acpid avahi-daemon systemd-timesyncd
-
-#pacman -S alsa-utils pulseaudio-alsa pulseaudio-equalizer
-#mkdir -p /etc/pulse/default.pa.d
-#echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
 
 mkdir -p /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
