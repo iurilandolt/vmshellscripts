@@ -1,15 +1,17 @@
 #part2
+pacman -S --noconfirm reflector
+reflector -c 'Spain' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 loadkeys br-latin1-abnt2
 pacman -Syy
+
 pacman -S --noconfirm sed
 sed -i "s/^#Color$/Color/" /etc/pacman.conf
 sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
 sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
 sed -i "s/^#[[]multilib[]]$/[multilib]/" /etc/pacman.conf
 sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/mirrorlist/" /etc/pacman.conf
-echo "%wheel ALL=ALL(ALL:ALL) ALL" >> /etc/sudoers
-echo "%sudo ALL=ALL(ALL:ALL) ALL" >> /etc/sudoers
-
+echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "%sudo ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
@@ -36,6 +38,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S --noconfirm networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc
 systemctl enable NetworkManager
 
+#pacman -S alsa-utils pulseaudio-alsa pulseaudio-equalizer
 #mkdir -p /etc/pulse/default.pa.d
 #echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
 
@@ -45,9 +48,10 @@ systemctl enable NetworkManager
 #echo "passwd for $username: "
 #passwd $username
 
-
-
-echo "Pre-Installation Finish Reboot now ut first"
+echo "Pre-Installation Finish Reboot now"
+echo "exit"
+echo "umount - R /mnt"
+echo "reboot"
 
 
 
