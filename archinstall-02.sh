@@ -1,15 +1,8 @@
 #part2
+reflector -c 'Berlin' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
-loadkeys br-latin1-abnt2
 
-pacman -S --noconfirm sed
-sed -i "s/^#Color$/Color/" /etc/pacman.conf
-sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
-sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
-sed -i "s/^#[[]multilib[]]$/[multilib]/" /etc/pacman.conf
-sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/mirrorlist/" /etc/pacman.conf
-echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
-echo "%sudo ALL=(ALL:ALL) ALL" >> /etc/sudoers
+loadkeys br-latin1-abnt2
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
@@ -26,6 +19,16 @@ echo "127.0.0.1       localhost" >> /etc/hosts
 echo "::1             localhost" >> /etc/hosts
 echo "127.0.1.1       $hostname.localdomain $hostname" >> /etc/hosts
 mkinitcpio -P
+
+pacman -S --noconfirm sed
+sed -i "s/^#Color$/Color/" /etc/pacman.conf
+sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
+sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 15/" /etc/pacman.conf
+sed -i "s/^#[[]multilib[]]$/[multilib]/" /etc/pacman.conf
+sed -i "s/^#Include = \/etc\/pacman\.d\/mirrorlist$/Include = \/etc\/pacman\.d\/mirrorlist/" /etc/pacman.conf
+echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "%sudo ALL=(ALL:ALL) ALL" >> /etc/sudoers
+
 echo "passwd for root: "
 passwd
 
