@@ -19,7 +19,7 @@ git clone https://git.suckless.org/st /tmp/st
 
 sudo make -C  /tmp/dwm clean install
 sudo make -C  /tmp/st clean install
-sed -i "s/^static char *shell = \"/bin\/sh\"$/static char *shell = \"/usr/local/bin/st\"/" /tmp/st/config.h
+sed -i "s/^static char *shell = \"//bin\/sh\"/$/static char *shell = \"//usr/local/bin/st\"//" /tmp/st/config.h
 
 
 #echo "exec dwn" >> ~/.xinitrc
