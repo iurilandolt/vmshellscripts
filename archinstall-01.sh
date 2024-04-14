@@ -21,11 +21,12 @@ mount /dev/sda1 /mnt/boot/efi
 mount /dev/sda3 /mnt
 mount /dev/sda4 /mnt/home
 
-reflector -c 'Berlin' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
-pacman -Syy
+#reflector -c 'Spain' -a 15 -p https --sort rate --save /etc/pacman.d/mirrorlist
+#pacman -Syy
+
 pacstrap /mnt base base-devel linux linux-firmware \
 	sysfsutils usbutils e2fsprogs inetutils netctl \
-	nano less which man-db man-pages
+	nano less which git sed man-db man-pages
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
