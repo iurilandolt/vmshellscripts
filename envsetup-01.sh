@@ -8,9 +8,11 @@ pacman -S --noconfirm alsa-utils pulseaudio-alsa pulseaudio-equalizer
 mkdir -p /etc/pulse/default.pa.d
 echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
 
+#https://archlinux.org/groups/x86_64/xorg/
+#https://archlinux.org/groups/x86_64/xorg-drivers/
 pacman -S --noconfirm xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop \
 	xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xinput xorg-xwininfo libx11 libxinerama libxft \
-	webkit2gtk
+	webkit2gtk xf86-video-fbdev xf86-video-vesa xf86-video-ati
 
 pacman -S --noconfirm vim
 
@@ -21,6 +23,9 @@ sudo make -C  /tmp/dwm clean install
 sudo make -C  /tmp/st clean install
 sed -i 's/"\/bin\/sh"/"\/usr\/local\/bin\/st"/' /tmp/st/config.h
 
+cat /etc/X11/xinit/xinitrc > ~/.xinitrc
 echo "exec dwn" >> ~/.xinitrc
+
+#echo "startx" >> ~/.bash_profile
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
