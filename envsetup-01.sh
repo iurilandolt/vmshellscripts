@@ -1,8 +1,6 @@
 pacman -Syu
 
-pacman -S --noconfirm libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau \
-	lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver vulkan-radeon \
-	lib32-vulkan-radeon mesa lib32-mesa vulkan-icd-loader lib32-vulkan-icd-loader
+pacman -S --noconfirm
 
 pacman -S --noconfirm alsa-utils pulseaudio-alsa pulseaudio-equalizer
 mkdir -p /etc/pulse/default.pa.d
@@ -11,17 +9,16 @@ echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
 #https://archlinux.org/groups/x86_64/xorg/
 #https://archlinux.org/groups/x86_64/xorg-drivers/
 pacman -S --noconfirm xorg-server xorg-xinit xorg-xkill xorg-xsetroot xorg-xbacklight xorg-xprop \
-	xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xinput xorg-xwininfo libx11 libxinerama libxft \
-	webkit2gtk xf86-video-fbdev xf86-video-vesa xf86-video-ati
+	xorg-xrandr xorg-xfontsel xorg-xlsfonts xorg-xinput xorg-xwininfo libx11 libxinerama libxft
 
 pacman -S --noconfirm vim
 
-git clone https://git.suckless.org/dwm /tmp/dwm
-git clone https://git.suckless.org/st /tmp/st
+git clone https://git.suckless.org/dwm ~/.config/dwm
+git clone https://git.suckless.org/st ~/.config/st
 
-sudo make -C  /tmp/dwm clean install
-sudo make -C  /tmp/st clean install
-sed -i 's/"\/bin\/sh"/"\/usr\/local\/bin\/st"/' /tmp/st/config.h
+sudo make -C  ~/.config/dwm clean install
+sudo make -C  ~/.config/st clean install
+sed -i 's/"\/bin\/sh"/"\/usr\/local\/bin\/st"/' ~/.config/st/config.h
 
 cat /etc/X11/xinit/xinitrc > ~/.xinitrc
 echo "exec dwn" >> ~/.xinitrc
@@ -29,3 +26,5 @@ echo "exec dwn" >> ~/.xinitrc
 #echo "startx" >> ~/.bash_profile
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# https://www.youtube.com/watch?v=SRqVuAUP2N0&ab_channel=BugsWriter
+# https://arch.d3sox.me/installation/install-desktop
