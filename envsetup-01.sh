@@ -1,6 +1,6 @@
 pacman -Syu
 
-pacman -S --noconfirm
+pacman -S --noconfirm xf86-video-vmware xf86-video-fbdev xf86-video-qxl xf86-video-sisusb
 
 pacman -S --noconfirm alsa-utils pulseaudio-alsa pulseaudio-equalizer
 mkdir -p /etc/pulse/default.pa.d
