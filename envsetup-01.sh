@@ -12,12 +12,12 @@ sudo echo "unload-module module-role-cork" >> /etc/pulse/default.pa.d/no-cork.pa
 #https://archlinux.org/groups/x86_64/xorg-drivers/
 sudo pacman -S --noconfirm xorg xorg-xinit nitrogen picom vim
 
-git clone https://git.suckless.org/dwm ~/.config/dwm
-git clone https://git.suckless.org/st ~/.config/st
+git clone https://git.suckless.org/dwm ~/.srcs/dwm
+git clone https://git.suckless.org/st ~/.srcs/st
 
-sudo make -C  ~/.config/dwm clean install
-sudo make -C  ~/.config/st clean install
-sed -i 's/"\/bin\/sh"/"\/usr\/local\/bin\/st"/' ~/.config/st/config.h
+sudo make -C  ~/.srcs/dwm clean install
+sudo make -C  ~/.srcs/st clean install
+sed -i 's/"\/bin\/sh"/"\/usr\/local\/bin\/st"/' ~/.srcs/st/config.h
 
 cat /etc/X11/xinit/xinitrc > ~/.xinitrc
 echo "exec dwn" >> ~/.xinitrc
