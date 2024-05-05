@@ -1,5 +1,10 @@
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+sudo git clone https://aur.archlinux.org.yay-git.git
+cd yay-git/
+mkpkg -si
+cd ~
+
 sudo pacman -Syu
 
 sudo pacman -S --noconfirm xf86-video-fbdev #xf86-video-vmware xf86-video-qxl xf86-video-sisusb
